@@ -11,6 +11,6 @@ class Persona extends Model
      */
     public function alumno()
     {
-        return $this->belongsTo('App\Alumno');
+        return $this->hasOne('App\Alumno');
     }
 }

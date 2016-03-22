@@ -11,6 +11,6 @@ class Alumno extends Model
      */
     public function persona()
     {
-        return $this->hasOne('App\Persona');
+        return $this->belongsTo('App\Persona');
     }
 }
