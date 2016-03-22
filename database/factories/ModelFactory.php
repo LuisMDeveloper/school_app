@@ -30,3 +30,13 @@ $factory->define(App\Persona::class, function (Faker\Generator $faker) {
         'telefono' => $faker->phoneNumber,
     ];
 });
+
+$factory->define(App\Alumno::class, function (Faker\Generator $faker) {
+    return [
+        //'persona_id' => 1,
+        'como_nos_conociste' => $faker->paragraph,
+        'nombre_del_tutor' => $faker->name,
+        'num_emergencia' => $faker->phoneNumber,
+        'facebook' => $faker->firstName,
+    ];
+});
