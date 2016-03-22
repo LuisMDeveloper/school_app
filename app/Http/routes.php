@@ -17,12 +17,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/alumnos', function() {
 
-    $alumnos = Alumno::all();
 
-    return view('alumnos.index')->with('alumnos', $alumnos);
-});
+Route::resource('alumnos', 'AlumnoController');
 
 Route::group(['middleware' => ['web']], function () {
     //

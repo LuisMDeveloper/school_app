@@ -42,7 +42,7 @@
     <div class="row">
         <div class="col-md-2">
             <ul class="nav nav-pills nav-stacked">
-                <li role="presentation"><a href="#">Alumnos</a></li>
+                <li role="presentation"><a href="{{ URL::to('alumnos') }}">Alumnos</a></li>
                 <li role="presentation"><a href="#">Maestros</a></li>
                 <li role="presentation"><a href="#">Materias</a></li>
                 <li role="presentation"><a href="#">Grupos</a></li>

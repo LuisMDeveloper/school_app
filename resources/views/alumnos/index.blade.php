@@ -21,7 +21,7 @@
                     @foreach($alumnos as $key => $alumno)
                         <tr>
                             <td>{{ $alumno->id }}</td>
-                            <td>{{ $alumno->persona->nombre }}</td>
+                            <td><a href="{{ URL::to('alumnos/' . $alumno->id) }}">{{ $alumno->persona->nombre }}</a></td>
                             <td>{{ $alumno->persona->apellidos }}</td>
                             <td>{{ $alumno->persona->fecha_nacimiento }}</td>
                             <td>{{ $alumno->persona->telefono }}</td>
@@ -32,9 +32,6 @@
                     @endforeach
                 </tbody>
             </table>
-            <ul>
-
-            </ul>
         </div>
     </div>
 @endsection
