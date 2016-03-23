@@ -2,7 +2,12 @@
 
 @section('content')
     <div class="panel panel-default">
-        <div class="panel-heading">Alumnos</div>
+        <div class="panel-heading">
+            Alumnos <span class="badge">{{ count($alumnos) }}</span>
+            <a href="{{ URL::to('alumnos') }}" class="btn btn-default btn-xs pull-right" role="button">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            </a>
+        </div>
         <div class="panel-body">
             <table class="table table-striped">
                 <thead>

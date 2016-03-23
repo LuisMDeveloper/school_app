@@ -2,7 +2,12 @@
 
 @section('content')
     <div class="panel panel-default">
-        <div class="panel-heading">{{ $alumno->persona->nombre }} {{ $alumno->persona->apellidos }}</div>
+        <div class="panel-heading">
+            <a href="{{ URL::to('alumnos') }}" class="btn btn-default btn-xs" role="button">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            </a>
+            {{ $alumno->persona->nombre }} {{ $alumno->persona->apellidos }}
+        </div>
         <div class="panel-body">
             <table class="table">
                 <tr>
