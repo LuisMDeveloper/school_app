@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Alumno;
+use App\Persona;
 
 class AlumnoController extends Controller
 {
@@ -28,7 +29,7 @@ class AlumnoController extends Controller
      */
     public function create()
     {
-        //
+        return view('alumnos.create');
     }
 
     /**
@@ -37,9 +38,26 @@ class AlumnoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Requests\CreateAlumno $request)
     {
-        //
+        $person = new Persona();
+        $person->nombre =  $request->input('nombre');
+        $person->apellidos =  $request->input('apellidos');
+        $person->direccion =  $request->input('direccion');
+        $person->genero =  $request->input('genero');
+        $person->fecha_nacimiento =  $request->input('fecha_nacimiento');
+        $person->telefono =  $request->input('telefono');
+        $person->save();
+
+        $alumno = new Alumno();
+        $alumno->persona_id =  $person->id;
+        $alumno->como_nos_conociste =  $request->input('como_nos_conociste');
+        $alumno->nombre_del_tutor =  $request->input('nombre_del_tutor');
+        $alumno->num_emergencia =  $request->input('num_emergencia');
+        $alumno->facebook =  $request->input('facebook');
+        $alumno->save();
+
+        return redirect('alumnos');
     }
 
     /**

@@ -13,14 +13,10 @@ use App\Alumno;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-
-
-Route::resource('alumnos', 'AlumnoController');
-
 Route::group(['middleware' => ['web']], function () {
-    //
+    Route::get('/', function () {
+        return view('welcome');
+    });
+
+    Route::resource('alumnos', 'AlumnoController');
 });

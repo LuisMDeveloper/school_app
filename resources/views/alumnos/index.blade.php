@@ -4,7 +4,7 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             Alumnos <span class="badge">{{ count($alumnos) }}</span>
-            <a href="{{ URL::to('alumnos') }}" class="btn btn-default btn-xs pull-right" role="button">
+            <a href="{{ URL::to('alumnos/create') }}" class="btn btn-default btn-xs pull-right" role="button">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
             </a>
         </div>
@@ -12,14 +12,14 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <td>Id</td>
-                    <td>Nombre</td>
-                    <td>Apellidos</td>
-                    <td>Fecha de nacimiento</td>
-                    <td>Teléfono</td>
-                    <td>Nombre del tutor</td>
-                    <td>Teléfono de emergencia</td>
-                    <td>Facebook</td>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Apellidos</th>
+                    <th>Fecha de nacimiento</th>
+                    <th>Teléfono</th>
+                    <th>Nombre del tutor</th>
+                    <th>Teléfono de emergencia</th>
+                    <th>Facebook</th>
                 </tr>
                 </thead>
                 <tbody>
