@@ -75,11 +75,11 @@ class AlumnoController extends Controller
         //}
 
 
-        $this->uploadFileForAlumno($request, 'certificado_secundaria', $person, $alumno);
-        $this->uploadFileForAlumno($request, 'acta_de_nacimiento_path', $person, $alumno);
-        $this->uploadFileForAlumno($request, 'curp', $person, $alumno);
-        $this->uploadFileForAlumno($request, 'comprobande_de_domicilio', $person, $alumno);
-        $this->uploadFileForAlumno($request, 'certificado_parcial', $person, $alumno);
+        $alumno->certificado_secundaria = $this->uploadFileForAlumno($request, 'certificado_secundaria', $person);
+        $alumno->acta_de_nacimiento_path = $this->uploadFileForAlumno($request, 'acta_de_nacimiento_path', $person);
+        $alumno->curp = $this->uploadFileForAlumno($request, 'curp', $person);
+        $alumno->comprobande_de_domicilio = $this->uploadFileForAlumno($request, 'comprobande_de_domicilio', $person);
+        $alumno->certificado_parcial = $this->uploadFileForAlumno($request, 'certificado_parcial', $person);
 
         $alumno->save();
 
@@ -139,14 +139,16 @@ class AlumnoController extends Controller
      * @param $person
      * @param $alumno
      */
-    public function uploadFileForAlumno(Requests\CreateAlumno $request, $fileInput, $person, $alumno)
+    public function uploadFileForAlumno(Requests\CreateAlumno $request, $fileInput, $person)
     {
         if ($request->hasFile($fileInput)) {
             $file = $request->file($fileInput);
             $extension = $file->getClientOriginalExtension();
             $filename = snake_case($person->apellidos) . '_' . snake_case($person->nombre) . '_' . $fileInput;
             Storage::disk('public')->put($filename . '.' . $extension, File::get($file));
-            $alumno->certificado_secundaria = $filename . '.' . $extension;
+            return $filename . '.' . $extension;
+        } else {
+            return '';
         }
     }
 }
