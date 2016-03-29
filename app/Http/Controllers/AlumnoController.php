@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 use App\Http\Requests;
 use App\Alumno;
@@ -40,6 +43,7 @@ class AlumnoController extends Controller
      */
     public function store(Requests\CreateAlumno $request)
     {
+        //return $request->all();
         $person = new Persona();
         $person->nombre =  $request->input('nombre');
         $person->apellidos =  $request->input('apellidos');
@@ -55,6 +59,28 @@ class AlumnoController extends Controller
         $alumno->nombre_del_tutor =  $request->input('nombre_del_tutor');
         $alumno->num_emergencia =  $request->input('num_emergencia');
         $alumno->facebook =  $request->input('facebook');
+
+
+        //$fileInput = 'certificado_secundaria';
+        //if ($request->hasFile($fileInput)) {
+        //    $file = $request->file($fileInput);
+        //    $extension = $file->getClientOriginalExtension();
+        //    $filename = snake_case($person->apellidos) .'_'. snake_case($person->nombre) . '_certificado_secundaria';
+        //    Storage::disk('public')->put($filename.'.'.$extension, File::get($file));
+        //    $alumno->certificado_secundaria = $filename.'.'.$extension;
+        //
+        //    //Get File
+        //    //$storagePath  = Storage::disk('public')->getDriver()->getAdapter()->getPathPrefix();
+        //    //return response()->download($storagePath.$alumno->certificado_secundaria);
+        //}
+
+
+        $this->uploadFileForAlumno($request, 'certificado_secundaria', $person, $alumno);
+        $this->uploadFileForAlumno($request, 'acta_de_nacimiento_path', $person, $alumno);
+        $this->uploadFileForAlumno($request, 'curp', $person, $alumno);
+        $this->uploadFileForAlumno($request, 'comprobande_de_domicilio', $person, $alumno);
+        $this->uploadFileForAlumno($request, 'certificado_parcial', $person, $alumno);
+
         $alumno->save();
 
         return redirect('alumnos');
@@ -105,5 +131,22 @@ class AlumnoController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * @param Requests\CreateAlumno $request
+     * @param $fileInput
+     * @param $person
+     * @param $alumno
+     */
+    public function uploadFileForAlumno(Requests\CreateAlumno $request, $fileInput, $person, $alumno)
+    {
+        if ($request->hasFile($fileInput)) {
+            $file = $request->file($fileInput);
+            $extension = $file->getClientOriginalExtension();
+            $filename = snake_case($person->apellidos) . '_' . snake_case($person->nombre) . '_' . $fileInput;
+            Storage::disk('public')->put($filename . '.' . $extension, File::get($file));
+            $alumno->certificado_secundaria = $filename . '.' . $extension;
+        }
     }
 }
