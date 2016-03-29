@@ -18,7 +18,7 @@
             Dar de alta alumno
         </div>
         <div class="panel-body">
-            {!! Form::open(array('url' => 'alumnos')) !!}
+            {!! Form::open(array('url' => 'alumnos', 'files' => true)) !!}
 
             <div class="form-group">
                 {!! Form::label('nombre', 'Nombre:') !!}
