@@ -70,6 +70,31 @@
                 {!! Form::textarea('como_nos_conociste', null, ['class' => 'form-control']) !!}
             </div>
 
+            <div class="form-group">
+                {!! Form::label('certificado_secundaria', 'Certificado de Secundaria:') !!}
+                {!! Form::file('certificado_secundaria', null, ['class' => 'form-control']) !!}
+            </div>
+
+            <div class="form-group">
+                {!! Form::label('acta_de_nacimiento_path', 'Acta de Nacimiento:') !!}
+                {!! Form::file('acta_de_nacimiento_path', null, ['class' => 'form-control']) !!}
+            </div>
+
+            <div class="form-group">
+                {!! Form::label('curp', 'CURP:') !!}
+                {!! Form::file('curp', null, ['class' => 'form-control']) !!}
+            </div>
+
+            <div class="form-group">
+                {!! Form::label('comprobande_de_domicilio', 'Comprobande de Domicilio:') !!}
+                {!! Form::file('comprobande_de_domicilio', null, ['class' => 'form-control']) !!}
+            </div>
+
+            <div class="form-group">
+                {!! Form::label('certificado_parcial', 'Certificado Parcial:') !!}
+                {!! Form::file('certificado_parcial', null, ['class' => 'form-control']) !!}
+            </div>
+
             {!! Form::submit('Dar de alta', ['class' => 'btn btn-primary pull-right']) !!}
 
             {!! Form::close() !!}
