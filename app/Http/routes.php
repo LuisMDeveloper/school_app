@@ -19,4 +19,15 @@ Route::group(['middleware' => ['web']], function () {
     });
 
     Route::resource('alumnos', 'AlumnoController');
+
+    //Route::get('file/{file}', function ($file) {
+    //    $storagePath  = Storage::disk('public')->getDriver()->getAdapter()->getPathPrefix();
+    //    return response()->download($storagePath.$file);
+    //    //return view('welcome');
+    //});
+
+    Route::get('file/{file}', ['as' => 'document', function ($file) {
+        $storagePath  = Storage::disk('public')->getDriver()->getAdapter()->getPathPrefix();
+        return response()->download($storagePath.$file);//
+    }]);
 });

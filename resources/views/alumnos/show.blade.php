@@ -43,6 +43,36 @@
                 <tr>
                     <td class="col-md-2 text-right">Facebook:</td> <td>{{ $alumno->facebook }}</td>
                 </tr>
+                <tr>
+                    <td class="col-md-2 text-right">Certificado de Secundaria:</td>
+                    @if(!empty($alumno->certificado_secundaria))
+                    <td>{{ link_to_route('document',"certificado_secundaria", ['file' => $alumno->certificado_secundaria]) }}</td>
+                    @endif
+                </tr>
+                <tr>
+                    <td class="col-md-2 text-right">Acta de Nacimiento:</td>
+                    @if(!empty($alumno->acta_de_nacimiento_path))
+                    <td>{{ link_to_route('document',"acta_de_nacimiento", ['file' => $alumno->acta_de_nacimiento_path]) }}</td>
+                    @endif
+                </tr>
+                <tr>
+                    <td class="col-md-2 text-right">CURP:</td>
+                    @if(!empty($alumno->curp))
+                    <td>{{ link_to_route('document',"curp", ['file' => $alumno->curp]) }}</td>
+                    @endif
+                </tr>
+                <tr>
+                    <td class="col-md-2 text-right">Comprobande de Domicilio:</td>
+                    @if(!empty($alumno->comprobande_de_domicilio))
+                    <td>{{ link_to_route('document',"comprobande_de_domicilio", ['file' => $alumno->comprobande_de_domicilio]) }}</td>
+                    @endif
+                </tr>
+                <tr>
+                    <td class="col-md-2 text-right">Certificado Parcial:</td>
+                    @if(!empty($alumno->certificado_parcial))
+                    <td>{{ link_to_route('document',"certificado_parcial", ['file' => $alumno->certificado_parcial]) }}</td>
+                    @endif
+                </tr>
 
             </table>
 
