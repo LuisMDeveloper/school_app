@@ -45,7 +45,7 @@
                 <li role="presentation"><a href="{{ URL::to('alumnos') }}">Alumnos</a></li>
                 <li role="presentation"><a href="#">Maestros</a></li>
                 <li role="presentation"><a href="#">Materias</a></li>
-                <li role="presentation"><a href="#">Grupos</a></li>
+                <li role="presentation"><a href="{{ URL::to('grupos') }}">Grupos</a></li>
             </ul>
         </div>
         <div class="col-md-10">

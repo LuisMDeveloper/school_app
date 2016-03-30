@@ -19,12 +19,10 @@ Route::group(['middleware' => ['web']], function () {
     });
 
     Route::resource('alumnos', 'AlumnoController');
-
-    //Route::get('file/{file}', function ($file) {
-    //    $storagePath  = Storage::disk('public')->getDriver()->getAdapter()->getPathPrefix();
-    //    return response()->download($storagePath.$file);
-    //    //return view('welcome');
-    //});
+    Route::get('grupos/asignar/{id}', 'GrupoController@asignar');
+    Route::get('grupos/random/{id}', 'GrupoController@random');
+    Route::get('grupos/alfa/{id}', 'GrupoController@alfa');
+    Route::resource('grupos', 'GrupoController');
 
     Route::get('file/{file}', ['as' => 'document', function ($file) {
         $storagePath  = Storage::disk('public')->getDriver()->getAdapter()->getPathPrefix();
