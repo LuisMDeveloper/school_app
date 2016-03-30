@@ -127,6 +127,7 @@ class AlumnoController extends Controller
         $alumno->nombre_del_tutor =  $request->input('nombre_del_tutor');
         $alumno->num_emergencia =  $request->input('num_emergencia');
         $alumno->facebook =  $request->input('facebook');
+        $alumno->estado =  $request->input('estado');
 
         $certificado_secundaria = $this->uploadFileForAlumno($request, 'certificado_secundaria', $alumno);
         $acta_de_nacimiento_path = $this->uploadFileForAlumno($request, 'acta_de_nacimiento_path', $alumno);

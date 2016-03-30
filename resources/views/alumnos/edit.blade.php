@@ -71,6 +71,15 @@
             </div>
 
             <div class="form-group">
+                {!! Form::label('estado', 'Estado:') !!}
+                {!! Form::select('estado', array('alta' => 'alta',
+                                                'baja temporal' => 'baja temporal',
+                                                'baja por egreso' => 'baja por egreso',
+                                                'baja definitiva' => 'baja definitiva'),
+                null, ['class' => 'form-control']) !!}
+            </div>
+
+            <div class="form-group">
                 {!! Form::label('certificado_secundaria', 'Certificado de Secundaria:') !!}
                 {!! Form::file('certificado_secundaria', null, ['class' => 'form-control']) !!}
             </div>

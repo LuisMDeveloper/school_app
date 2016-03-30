@@ -47,6 +47,9 @@
                     <td class="col-md-2 text-right">Facebook:</td> <td>{{ $alumno->facebook }}</td>
                 </tr>
                 <tr>
+                    <td class="col-md-2 text-right">Estado:</td> <td>{{ $alumno->estado }}</td>
+                </tr>
+                <tr>
                     <td class="col-md-2 text-right">Certificado de Secundaria:</td>
                     @if(!empty($alumno->certificado_secundaria))
                     <td>{{ link_to_route('document',"certificado_secundaria", ['file' => $alumno->certificado_secundaria]) }}</td>

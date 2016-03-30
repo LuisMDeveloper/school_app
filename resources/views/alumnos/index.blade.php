@@ -20,6 +20,7 @@
                     <th>Nombre del tutor</th>
                     <th>Teléfono de emergencia</th>
                     <th>Facebook</th>
+                    <th>Estado</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -33,6 +34,7 @@
                             <td>{{ $alumno->nombre_del_tutor }}</td>
                             <td>{{ $alumno->num_emergencia }}</td>
                             <td>{{ $alumno->facebook }}</td>
+                            <td>{{ $alumno->estado }}</td>
                         </tr>
                     @endforeach
                 </tbody>
