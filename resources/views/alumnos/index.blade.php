@@ -26,10 +26,10 @@
                     @foreach($alumnos as $key => $alumno)
                         <tr>
                             <td>{{ $alumno->id }}</td>
-                            <td><a href="{{ URL::to('alumnos/' . $alumno->id) }}">{{ $alumno->persona->nombre }}</a></td>
-                            <td>{{ $alumno->persona->apellidos }}</td>
-                            <td>{{ $alumno->persona->fecha_nacimiento }}</td>
-                            <td>{{ $alumno->persona->telefono }}</td>
+                            <td><a href="{{ URL::to('alumnos/' . $alumno->id) }}">{{ $alumno->nombre }}</a></td>
+                            <td>{{ $alumno->apellidos }}</td>
+                            <td>{{ $alumno->fecha_nacimiento }}</td>
+                            <td>{{ $alumno->telefono }}</td>
                             <td>{{ $alumno->nombre_del_tutor }}</td>
                             <td>{{ $alumno->num_emergencia }}</td>
                             <td>{{ $alumno->facebook }}</td>

@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Storage;
 
 use App\Http\Requests;
 use App\Alumno;
-use App\Persona;
 
 class AlumnoController extends Controller
 {
@@ -44,17 +43,13 @@ class AlumnoController extends Controller
     public function store(Requests\CreateAlumno $request)
     {
         //return $request->all();
-        $person = new Persona();
-        $person->nombre =  $request->input('nombre');
-        $person->apellidos =  $request->input('apellidos');
-        $person->direccion =  $request->input('direccion');
-        $person->genero =  $request->input('genero');
-        $person->fecha_nacimiento =  $request->input('fecha_nacimiento');
-        $person->telefono =  $request->input('telefono');
-        $person->save();
-
         $alumno = new Alumno();
-        $alumno->persona_id =  $person->id;
+        $alumno->nombre =  $request->input('nombre');
+        $alumno->apellidos =  $request->input('apellidos');
+        $alumno->direccion =  $request->input('direccion');
+        $alumno->genero =  $request->input('genero');
+        $alumno->fecha_nacimiento =  $request->input('fecha_nacimiento');
+        $alumno->telefono =  $request->input('telefono');
         $alumno->como_nos_conociste =  $request->input('como_nos_conociste');
         $alumno->nombre_del_tutor =  $request->input('nombre_del_tutor');
         $alumno->num_emergencia =  $request->input('num_emergencia');
@@ -75,11 +70,11 @@ class AlumnoController extends Controller
         //}
 
 
-        $alumno->certificado_secundaria = $this->uploadFileForAlumno($request, 'certificado_secundaria', $person);
-        $alumno->acta_de_nacimiento_path = $this->uploadFileForAlumno($request, 'acta_de_nacimiento_path', $person);
-        $alumno->curp = $this->uploadFileForAlumno($request, 'curp', $person);
-        $alumno->comprobande_de_domicilio = $this->uploadFileForAlumno($request, 'comprobande_de_domicilio', $person);
-        $alumno->certificado_parcial = $this->uploadFileForAlumno($request, 'certificado_parcial', $person);
+        $alumno->certificado_secundaria = $this->uploadFileForAlumno($request, 'certificado_secundaria', $alumno);
+        $alumno->acta_de_nacimiento_path = $this->uploadFileForAlumno($request, 'acta_de_nacimiento_path', $alumno);
+        $alumno->curp = $this->uploadFileForAlumno($request, 'curp', $alumno);
+        $alumno->comprobande_de_domicilio = $this->uploadFileForAlumno($request, 'comprobande_de_domicilio', $alumno);
+        $alumno->certificado_parcial = $this->uploadFileForAlumno($request, 'certificado_parcial', $alumno);
 
         $alumno->save();
 
@@ -107,7 +102,9 @@ class AlumnoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $alumno = Alumno::find($id);
+
+        return view('alumnos.edit')->with('alumno', $alumno);
     }
 
     /**
@@ -119,7 +116,33 @@ class AlumnoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $alumno = Alumno::find($id);
+        $alumno->nombre =  $request->input('nombre');
+        $alumno->apellidos =  $request->input('apellidos');
+        $alumno->direccion =  $request->input('direccion');
+        $alumno->genero =  $request->input('genero');
+        $alumno->fecha_nacimiento =  $request->input('fecha_nacimiento');
+        $alumno->telefono =  $request->input('telefono');
+        $alumno->como_nos_conociste =  $request->input('como_nos_conociste');
+        $alumno->nombre_del_tutor =  $request->input('nombre_del_tutor');
+        $alumno->num_emergencia =  $request->input('num_emergencia');
+        $alumno->facebook =  $request->input('facebook');
+
+        $certificado_secundaria = $this->uploadFileForAlumno($request, 'certificado_secundaria', $alumno);
+        $acta_de_nacimiento_path = $this->uploadFileForAlumno($request, 'acta_de_nacimiento_path', $alumno);
+        $curp = $this->uploadFileForAlumno($request, 'curp', $alumno);
+        $comprobande_de_domicilio = $this->uploadFileForAlumno($request, 'comprobande_de_domicilio', $alumno);
+        $certificado_parcial = $this->uploadFileForAlumno($request, 'certificado_parcial', $alumno);
+
+        $alumno->certificado_secundaria = $certificado_secundaria == '' ?  $alumno->certificado_secundaria : $certificado_secundaria;
+        $alumno->acta_de_nacimiento_path = $acta_de_nacimiento_path == '' ?  $alumno->acta_de_nacimiento_path : $acta_de_nacimiento_path;
+        $alumno->curp = $curp == '' ?  $alumno->curp : $curp;
+        $alumno->comprobande_de_domicilio = $comprobande_de_domicilio  == '' ?  $alumno->comprobande_de_domicilio : $comprobande_de_domicilio;
+        $alumno->certificado_parcial = $certificado_parcial  == '' ?  $alumno->certificado_parcial : $certificado_parcial;
+
+        $alumno->save();
+
+        return redirect('alumnos');
     }
 
     /**
@@ -134,17 +157,18 @@ class AlumnoController extends Controller
     }
 
     /**
+     * NOTE: Not work with png
      * @param Requests\CreateAlumno $request
      * @param $fileInput
      * @param $person
      * @param $alumno
      */
-    public function uploadFileForAlumno(Requests\CreateAlumno $request, $fileInput, $person)
+    public function uploadFileForAlumno(Request $request, $fileInput, $alumno)
     {
         if ($request->hasFile($fileInput)) {
             $file = $request->file($fileInput);
             $extension = $file->getClientOriginalExtension();
-            $filename = snake_case($person->apellidos) . '_' . snake_case($person->nombre) . '_' . $fileInput;
+            $filename = snake_case($alumno->apellidos) . '_' . snake_case($alumno->nombre) . '_' . $fileInput;
             Storage::disk('public')->put($filename . '.' . $extension, File::get($file));
             return $filename . '.' . $extension;
         } else {

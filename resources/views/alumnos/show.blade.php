@@ -6,7 +6,10 @@
             <a href="{{ URL::to('alumnos') }}" class="btn btn-default btn-xs" role="button">
                 <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
             </a>
-            {{ $alumno->persona->nombre }} {{ $alumno->persona->apellidos }}
+            {{ $alumno->nombre }} {{ $alumno->apellidos }}
+            <a href="{{ URL::to('alumnos/' . $alumno->id.'/edit/') }}" class="btn btn-default btn-xs pull-right" role="button">
+                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+            </a>
         </div>
         <div class="panel-body">
             <table class="table">
@@ -14,22 +17,22 @@
                     <td class="col-md-2 text-right">ID:</td> <td class="col-md-10">{{ $alumno->id }}</td>
                 </tr>
                 <tr>
-                    <td class="col-md-2 text-right">Nombre:</td> <td class="col-md-10">{{ $alumno->persona->nombre }}</td>
+                    <td class="col-md-2 text-right">Nombre:</td> <td class="col-md-10">{{ $alumno->nombre }}</td>
                 </tr>
                 <tr>
-                    <td class="col-md-2 text-right">Apellidos:</td> <td>{{ $alumno->persona->apellidos }}</td>
+                    <td class="col-md-2 text-right">Apellidos:</td> <td>{{ $alumno->apellidos }}</td>
                 </tr>
                 <tr>
-                    <td class="col-md-2 text-right">Direccion:</td> <td>{{ $alumno->persona->direccion }}</td>
+                    <td class="col-md-2 text-right">Direccion:</td> <td>{{ $alumno->direccion }}</td>
                 </tr>
                 <tr>
-                    <td class="col-md-2 text-right">Genero:</td> <td>{{ $alumno->persona->genero }}</td>
+                    <td class="col-md-2 text-right">Genero:</td> <td>{{ $alumno->genero }}</td>
                 </tr>
                 <tr>
-                    <td class="col-md-2 text-right">Fecha de nacimiento:</td> <td>{{ $alumno->persona->fecha_nacimiento }}</td>
+                    <td class="col-md-2 text-right">Fecha de nacimiento:</td> <td>{{ $alumno->fecha_nacimiento }}</td>
                 </tr>
                 <tr>
-                    <td class="col-md-2 text-right">Telefono:</td> <td>{{ $alumno->persona->telefono }}</td>
+                    <td class="col-md-2 text-right">Telefono:</td> <td>{{ $alumno->telefono }}</td>
                 </tr>
                 <tr>
                     <td class="col-md-2 text-right">¿Como nos conociste?:</td> <td>{{ $alumno->como_nos_conociste }}</td>
