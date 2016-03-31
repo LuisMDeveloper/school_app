@@ -7,6 +7,7 @@ use App\Grupo;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Maatwebsite\Excel\Facades\Excel;
 
 class GrupoController extends Controller
 {
@@ -139,6 +140,25 @@ class GrupoController extends Controller
     public function alfa($id)
     {
 
-        return view('grupos.asignar')->with('grupo', $grupo);
+        //return view('grupos.asignar')->with('grupo', $grupo);
+    }
+
+    /**
+     * Export to Exel
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function ecxel($id)
+    {
+        $grupo = Grupo::find($id);
+        Excel::create('Lista '.$grupo->nombre, function($excel) use ($grupo) {
+
+            $excel->setTitle('Lista de asistencia '.$grupo->nombre);
+
+            $excel->sheet('Lista', function($sheet) use ($grupo) {
+                $sheet->fromArray($grupo->alumnos);
+            });
+
+        })->download('xls');
     }
 }

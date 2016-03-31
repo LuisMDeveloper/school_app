@@ -22,6 +22,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('grupos/asignar/{id}', 'GrupoController@asignar');
     Route::get('grupos/random/{id}', 'GrupoController@random');
     Route::get('grupos/alfa/{id}', 'GrupoController@alfa');
+    Route::get('grupos/ecxel/{id}', 'GrupoController@ecxel');
     Route::resource('grupos', 'GrupoController');
 
     Route::get('file/{file}', ['as' => 'document', function ($file) {

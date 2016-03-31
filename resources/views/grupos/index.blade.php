@@ -33,6 +33,11 @@
                                     <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Asignar Alumnos
                                 </a>
                             </td>
+                            <td>
+                                <a class="btn btn-default" href="{{ URL::to('grupos/ecxel/' . $grupo->id) }}" role="button">
+                                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Lista
+                                </a>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
